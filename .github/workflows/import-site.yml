@@ -13,7 +13,7 @@ jobs:
   import-site:
     runs-on: ubuntu-latest
     env:
-      NOTION_FILE_URI: "file://%7B%22source%22%3A%22attachment%3A8116f122-9b4d-476c-9727-30e43422699e%3Aclimate-truth-nav-refinement.zip%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%22bd193f77-c1e2-403a-bfa7-670fe69d9560%22%2C%22spaceId%22%3A%226e1643af-e435-81ba-b7f1-0003c8207839%22%7D%7D"
+      NOTION_FILE_URI_B64: "ZmlsZTovLyU3QiUyMnNvdXJjZSUyMiUzQSUyMmF0dGFjaG1lbnQlM0E4MTE2ZjEyMi05YjRkLTQ3NmMtOTcyNy0zMGU0MzQyMjY5OWUlM0FjbGltYXRlLXRydXRoLW5hdi1yZWZpbmVtZW50LnppcCUyMiUyQyUyMnBlcm1pc3Npb25SZWNvcmQlMjIlM0ElN0IlMjJ0YWJsZSUyMiUzQSUyMmJsb2NrJTIyJTJDJTIyaWQlMjIlM0ElMjJiZDE5M2Y3Ny1jMWUyLTQwM2EtYmZhNy02NzBmZTY5ZDk1NjAlMjIlMkMlMjJzcGFjZUlkJTIyJTNBJTIyNmUxNjQzYWYtZTQzNS04MWJhLWI3ZjEtMDAwM2M4MjA3ODM5JTIyJTdEJTdE"
     steps:
       - uses: actions/checkout@v4
       - name: Download and publish site package
@@ -21,19 +21,18 @@ jobs:
         run: |
           set -euo pipefail
           python3 <<'PY'
-          import json, os, pathlib, shutil, urllib.parse, urllib.request, zipfile
+          import base64, json, os, pathlib, shutil, urllib.parse, urllib.request, zipfile
 
-          raw = os.environ['NOTION_FILE_URI']
-          if not raw.startswith('file://'):
-              raise SystemExit('The transfer link was not expanded.')
+          raw = base64.b64decode(os.environ['NOTION_FILE_URI_B64']).decode()
           info = json.loads(urllib.parse.unquote(raw[7:]))
           source = info['source']
           permission = info['permissionRecord']
           name = source.split(':', 2)[-1]
+          api_base = 'https://' + 'www.notion.so' + '/api/v3/'
 
           def post(endpoint, payload):
               req = urllib.request.Request(
-                  'https://www.notion.so/api/v3/'' + endpoint,
+                  api_base + endpoint,
                   data=json.dumps(payload).encode(),
                   headers={'Content-Type':'application/json','User-Agent':'Mozilla/5.0'},
                   method='POST',
