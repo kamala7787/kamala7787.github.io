@@ -1,0 +1,104 @@
+name: Import climate website
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/import-site.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import-site:
+    runs-on: ubuntu-latest
+    env:
+      NOTION_FILE_URI: "file://%7B%22source%22%3A%22attachment%3Ac51f7596-d634-4d15-b081-d00bd9e2e810%3Aclimate-truth-original-design-light-theme.zip%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%222dec2eaa-5e61-4cde-b0f3-bc58c5bb4dd9%22%2C%22spaceId%22%3A%226e1643af-e435-81ba-b7f1-0003c8207839%22%7D%7D"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and publish site package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json, os, pathlib, shutil, urllib.parse, urllib.request, zipfile
+
+          raw = os.environ['NOTION_FILE_URI']
+          if raw.startswith('file://'):
+              info = json.loads(urllib.parse.unquote(raw[7:]))
+          else:
+              raise SystemExit('The transfer link was not expanded.')
+          source = info['source']
+          permission = info['permissionRecord']
+          name = source.split(':', 2)[-1]
+
+          def post(endpoint, payload):
+              req = urllib.request.Request(
+                  'https://www.notion.so/api/v3/' + endpoint,
+                  data=json.dumps(payload).encode(),
+                  headers={'Content-Type':'application/json','User-Agent':'Mozilla/5.0'},
+                  method='POST',
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as response:
+                      return json.loads(response.read().decode())
+              except Exception as exc:
+                  print(endpoint, type(exc).__name__, str(exc))
+                  return None
+
+          def find_url(value):
+              if isinstance(value, str) and value.startswith('http'):
+                  return value
+              if isinstance(value, dict):
+                  for item in value.values():
+                      found = find_url(item)
+                      if found: return found
+              if isinstance(value, list):
+                  for item in value:
+                      found = find_url(item)
+                      if found: return found
+              return None
+
+          attempts = [
+              ('getPublicFileUrl', {'permissionRecord': permission, 'name': name}),
+              ('getPublicFileUrl', {'permissionRecord': permission, 'name': name, 'download': True}),
+              ('getSignedFileUrls', {'urls': [{'permissionRecord': permission, 'url': source}]}),
+          ]
+          signed = None
+          for endpoint, payload in attempts:
+              result = post(endpoint, payload)
+              signed = find_url(result)
+              if signed: break
+          if not signed:
+              raise SystemExit('Could not obtain the public package URL.')
+
+          package = pathlib.Path('/tmp/site.zip')
+          urllib.request.urlretrieve(signed, package)
+          if package.read_bytes()[:2] != b'PK':
+              raise SystemExit('Downloaded package is not a ZIP archive.')
+
+          unpacked = pathlib.Path('/tmp/site')
+          shutil.rmtree(unpacked, ignore_errors=True)
+          unpacked.mkdir()
+          with zipfile.ZipFile(package) as archive:
+              archive.extractall(unpacked)
+
+          root = pathlib.Path('.')
+          for child in list(root.iterdir()):
+              if child.name in {'.git', '.github'}:
+                  continue
+              if child.is_dir(): shutil.rmtree(child)
+              else: child.unlink()
+          entries = list(unpacked.iterdir())
+          source_root = entries[0] if len(entries) == 1 and entries[0].is_dir() else unpacked
+          for child in source_root.iterdir():
+              target = root / child.name
+              if child.is_dir(): shutil.copytree(child, target)
+              else: shutil.copy2(child, target)
+          pathlib.Path('.nojekyll').touch()
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Publish approved light-theme climate site"
+          git push
