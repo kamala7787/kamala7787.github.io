@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Climate Truth (TCT) — From Awareness to Action</title>
+<meta name="description" content="The Climate Truth (TCT) is a global, digital-first climate movement that documents and amplifies lived climate realities — with grassroots hubs across the Global South.">
+<meta name="theme-color" content="#f7f8f3">
+
+<!-- social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Climate Truth">
+<meta property="og:title" content="The Climate Truth — From Awareness to Action">
+<meta property="og:description" content="A global stage for lived climate realities. Storytelling, grassroots action, and open research collaboration.">
+<meta property="og:image" content="assets/og_cover.png">
+<meta property="og:url" content="https://theclimatetruth.org/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Climate Truth — From Awareness to Action">
+<meta name="twitter:description" content="A global stage for lived climate realities.">
+<meta name="twitter:image" content="assets/og_cover.png">
+<link rel="icon" href="assets/logo.jpg">
+
+<script>document.documentElement.classList.add('js')</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05070c;
+  --bg2:#0a0d12;
+  --bg3:#10151d;
+  --card:#131924;
+  --card-hi:#18202d;
+  --paper:#eff1ec;
+  --paper-ink:#101410;
+  --paper-rule:rgba(16,20,16,.14);
+  --paper-dim:#4c554c;      /* body meta, ~7.4:1 on --paper */
+  --paper-green:#215c3a;    /* small-caps labels, ~6.8:1 */
+  --paper-green-hi:#2f7a4a; /* large text only */
+  --ink:#f4f6f4;
+  --ink-dim:#b9c2bb;      /* 8.4:1 on --bg */
+  --ink-faint:#8b948d;    /* 5.1:1 on --bg — decorative/meta only */
+  --green:#4fae6d;
+  --green-bright:#79dc9c; /* 9.6:1 on --bg */
+  --green-soft:rgba(79,174,109,.12);
+  --rule:rgba(255,255,255,.12);
+  --rule-soft:rgba(255,255,255,.07);
+  --max:1480px;
+  --gutter:5vw;
+  --nav-h:112px;
+  --ease-out-quint:cubic-bezier(.22,1,.36,1);
+  --ease-out-cubic:cubic-bezier(.215,.61,.355,1);
+  --dur-micro:.18s;
+  --dur-default:.35s;
+  --dur-entrance:.85s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:clamp(16px,1.05vw,18.5px);line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;width:100%;max-width:100%;
+}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
+::selection{background:var(--green);color:#06110a}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+
+/* one shared grid for every section, hero included */
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+section{padding:clamp(88px,10vw,150px) 0}
+[id]{scroll-margin-top:calc(var(--nav-h) + 28px)}
+
+/* focus + skip link */
+:focus-visible{outline:2px solid var(--green-bright);outline-offset:3px;border-radius:2px}
+.skip{
+  position:absolute;left:16px;top:-100px;z-index:200;
+  background:var(--green);color:#06110a;padding:12px 20px;
+  font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  transition:top var(--dur-micro);
+}
+.skip:focus{top:16px}
+
+/* ---------- typography ---------- */
+h1,h2,h3{font-weight:700;letter-spacing:-.02em;line-height:1.06}
+h2{font-size:clamp(2rem,4vw,3.5rem)}
+h3{font-size:clamp(1.3rem,2.4vw,1.9rem)}
+.serif{font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;color:var(--green-bright);letter-spacing:0}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.label{
+  font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-dim);display:flex;align-items:center;gap:16px;
+}
+.label::before{content:"";display:block;width:40px;height:1px;background:var(--green);flex:none}
+.label.center{justify-content:center}
+.label.center::after{content:"";display:block;width:40px;height:1px;background:var(--green);flex:none}
+.lede{color:var(--ink-dim);font-size:clamp(17px,1.3vw,19px)}
+.cropmarks{position:relative}
+.cropmarks::before,.cropmarks::after{
+  content:"+" / "";position:absolute;font-size:14px;color:rgba(255,255,255,.28);line-height:1;
+}
+.cropmarks::before{top:calc(var(--nav-h) + 24px);left:24px}
+.cropmarks::after{bottom:24px;right:24px}
+
+/* ---------- header: brand block SEPARATED from nav ---------- */
+.site-head{
+  position:fixed;top:18px;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  max-width:var(--max);margin:0 auto;padding:0 var(--gutter);
+  transition:transform .5s var(--ease-out-quint);
+}
+.site-head.hidden{transform:translateY(-160%)}
+
+/* brand: its own pill, generous size, no clipping */
+.brand{
+  display:flex;align-items:center;gap:16px;
+  padding:12px 26px 12px 14px;border-radius:999px;
+  background:rgba(8,11,16,.72);border:1px solid var(--rule);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 12px 40px rgba(0,0,0,.45);
+  transition:background var(--dur-default),border-color var(--dur-default);
+}
+.brand:hover{border-color:rgba(121,220,156,.45)}
+.brand-mark{
+  position:relative;flex:none;
+  width:clamp(52px,4.6vw,72px);height:clamp(52px,4.6vw,72px);
+  border-radius:50%;background:#0d1a12;
+  border:2px solid var(--green);overflow:hidden;
+  display:grid;place-items:center;
+}
+.brand-mark span{
+  font-weight:800;font-size:15px;letter-spacing:.06em;color:var(--green-bright);
+}
+.brand-mark img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  image-rendering:auto;
+}
+.brand-text{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0}
+.brand-name{
+  font-weight:800;font-size:clamp(19px,1.85vw,28px);
+  letter-spacing:-.015em;color:#fff;white-space:nowrap;
+  /* ascender/descender breathing room — no merge into tagline */
+  line-height:1.14;padding-block:.02em;
+}
+.brand-name b{color:var(--green-bright);font-weight:800}
+.brand-tag{
+  font-size:clamp(9.5px,.72vw,11px);font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);line-height:1.3;white-space:nowrap;
+}
+
+/* nav: separate container */
+.nav-shell{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:999px;
+  background:rgba(8,11,16,.72);border:1px solid var(--rule);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 12px 40px rgba(0,0,0,.45);
+}
+/* desktop nav */
+.nav-desktop{display:flex;align-items:center;gap:4px}
+.nav-desktop a{
+  position:relative;padding:9px 14px;border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:.03em;color:var(--ink-dim);
+  white-space:nowrap;transition:color var(--dur-micro),background var(--dur-micro);
+}
+.nav-desktop a::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:5px;height:1px;
+  background:var(--green-bright);transform:scaleX(0);transform-origin:right;
+  transition:transform .3s var(--ease-out-cubic);
+}
+.nav-desktop a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-desktop a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{
+  padding:11px 22px!important;border-radius:999px;background:var(--green);
+  color:#06110a!important;font-weight:600;letter-spacing:.06em;
+  transition:background var(--dur-micro),transform var(--dur-micro);
+}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--green-bright);transform:translateY(-1px)}
+
+/* hamburger */
+.nav-toggle{
+  display:none;width:44px;height:44px;flex:none;
+  border:1px solid var(--rule);border-radius:50%;
+  background:transparent;cursor:pointer;place-items:center;
+}
+.nav-toggle i{display:block;width:17px;height:1.5px;background:var(--ink);position:relative;transition:transform var(--dur-default),background var(--dur-micro)}
+.nav-toggle i::before,.nav-toggle i::after{
+  content:"";position:absolute;left:0;width:17px;height:1.5px;background:var(--ink);
+  transition:transform var(--dur-default),opacity var(--dur-micro);
+}
+.nav-toggle i::before{top:-5.5px}
+.nav-toggle i::after{top:5.5px}
+.nav-toggle[aria-expanded="true"] i{background:transparent}
+.nav-toggle[aria-expanded="true"] i::before{transform:translateY(5.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] i::after{transform:translateY(-5.5px) rotate(-45deg)}
+
+/* mobile drawer — viewport-anchored, outside any filtered ancestor */
+.menu-scrim{
+  position:fixed;inset:0;z-index:98;
+  background:rgba(3,5,8,.72);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  opacity:0;transition:opacity var(--dur-default);
+}
+.menu-scrim.show{opacity:1}
+.mobile-menu{
+  position:fixed;z-index:99;
+  top:calc(var(--nav-h) + 6px);
+  left:max(16px,var(--gutter));
+  right:max(16px,var(--gutter));
+  max-height:calc(100svh - var(--nav-h) - 28px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  display:flex;flex-direction:column;gap:2px;
+  padding:12px;border:1px solid var(--rule);border-radius:20px;
+  background:rgba(7,10,15,.98);
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(-10px) scale(.99);
+  transform-origin:top center;
+  transition:opacity var(--dur-default),transform var(--dur-default) var(--ease-out-cubic);
+}
+.mobile-menu.show{opacity:1;transform:none}
+.mobile-menu a{
+  padding:15px 16px;border-radius:12px;font-size:16px;font-weight:500;
+  color:var(--ink);transition:background var(--dur-micro),color var(--dur-micro);
+}
+.mobile-menu a:active{background:rgba(255,255,255,.07)}
+.mobile-menu .mm-cta{
+  margin-top:8px;text-align:center;background:var(--green);color:#06110a;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;
+}
+
+@media(max-width:1120px){
+  :root{--nav-h:92px}
+  .nav-desktop{display:none}
+  .nav-toggle{display:grid}
+  .nav-shell{padding:8px}
+}
+@media(min-width:1121px){
+  .mobile-menu,.menu-scrim{display:none!important}
+}
+@media(max-width:560px){
+  :root{--gutter:18px;--nav-h:86px}
+  .brand{padding:9px 16px 9px 9px;gap:11px}
+  .brand-tag{letter-spacing:.12em}
+  .site-head{top:12px;gap:12px}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;isolation:isolate}
+.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:-1}
+.hero-bg img,.hero-bg video{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,var(--bg) 3%,rgba(6,9,13,.72) 42%,rgba(6,9,13,.34) 100%);
+}
+.hero-inner{padding-bottom:clamp(72px,11vh,130px);padding-top:calc(var(--nav-h) + 40px)}
+.hero .label{color:#d6ded8;margin-bottom:26px}
+.hero h1{
+  font-size:clamp(2.6rem,7.6vw,6.6rem);font-weight:800;color:#fff;
+  letter-spacing:-.03em;line-height:1.02;max-width:16em;
+}
+/* clipped-line entrance WITH descender room (fixes letter merge/clipping) */
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.1em}
+.hero h1 .word{display:inline-block;will-change:transform}
+.js .hero h1 .word{transform:translateY(115%);transition:transform var(--dur-entrance) var(--ease-out-quint)}
+.js .hero.loaded h1 .word{transform:none}
+.js .hero p,.js .hero-cta,.js .hero .label,.js .hero-meta{
+  opacity:0;transform:translateY(22px);
+  transition:opacity var(--dur-entrance) var(--ease-out-quint),transform var(--dur-entrance) var(--ease-out-quint);
+}
+.js .hero.loaded p,.js .hero.loaded .hero-cta,.js .hero.loaded .label,.js .hero.loaded .hero-meta{opacity:1;transform:none}
+.hero p{max-width:33em;margin-top:26px;font-size:clamp(17px,1.35vw,20px);color:#e6ebe6}
+.hero-cta{margin-top:38px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.hero-meta{
+  margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);
+  display:flex;flex-wrap:wrap;gap:8px 34px;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c3ccc5;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 32px;border:1px solid var(--green);border-radius:999px;
+  font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff;
+  background:transparent;cursor:pointer;
+  transition:background var(--dur-micro),color var(--dur-micro),transform var(--dur-micro),border-color var(--dur-micro);
+}
+.btn:hover{background:var(--green);color:#06110a;transform:translateY(-2px)}
+.btn.solid{background:var(--green);color:#06110a}
+.btn.solid:hover{background:var(--green-bright)}
+.btn.ghost{border-color:var(--rule);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--green);background:var(--green-soft);color:#fff;transform:translateY(-2px)}
+.hero-scroll{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#c3ccc5}
+
+@media(max-width:600px){
+  .hero h1{font-size:clamp(2.1rem,10vw,3.2rem);max-width:none}
+  .hero h1 .line{overflow:visible;padding-bottom:0;margin-bottom:0}
+  .js .hero h1 .word{transform:none;opacity:0;transition:opacity var(--dur-entrance) var(--ease-out-quint)}
+  .js .hero.loaded h1 .word{opacity:1}
+  .hero-inner{padding-top:calc(var(--nav-h) + 28px)}
+}
+
+/* ---------- who we are + world map ---------- */
+.who-grid{display:grid;grid-template-columns:6fr 5fr;gap:clamp(40px,5vw,80px);align-items:center}
+@media(max-width:1000px){.who-grid{grid-template-columns:1fr}}
+.who-copy h2{margin:24px 0 26px;color:#fff}
+.who-copy p{color:var(--ink-dim);margin-bottom:18px}
+.who-copy p strong{color:var(--ink);font-weight:600}
+.who-points{margin-top:32px;border-top:1px solid var(--rule)}
+.who-points li{
+  list-style:none;display:flex;gap:16px;padding:15px 0;
+  border-bottom:1px solid var(--rule);font-size:16.5px;color:var(--ink);
+}
+.who-points li span{color:var(--green);font-weight:700;flex:none}
+
+/* ---------- map card ---------- */
+.mapcard{
+  position:relative;padding:clamp(18px,2vw,26px) clamp(18px,2vw,26px) clamp(14px,1.6vw,20px);
+  border:1px solid var(--rule);border-radius:20px;
+  background:linear-gradient(180deg,#0b1017,#080b10);
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.mapcard-head{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:0 2px 14px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);
+}
+.mapcard-head b{display:inline-flex;align-items:center;gap:8px;color:var(--green-bright);font-weight:600;letter-spacing:.18em}
+.mapcard-head b::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--green-bright);
+  box-shadow:0 0 0 3px rgba(121,220,156,.2);animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* the map itself */
+#worldmap{width:100%;aspect-ratio:16/9;min-height:240px}
+@media(max-width:520px){#worldmap{aspect-ratio:4/3}}
+.jvm-container{background:transparent!important}
+.jvm-region{transition:fill .3s var(--ease-out-cubic)}
+/* hub markers get a soft halo */
+.jvm-marker{transition:r .25s var(--ease-out-cubic),fill .25s var(--ease-out-cubic)}
+/* tooltip restyled to match the design system */
+.jvm-tooltip{
+  background:#eff1ec!important;color:#101410!important;
+  border:0!important;border-radius:8px!important;
+  padding:7px 12px!important;
+  font-family:'Inter',sans-serif!important;font-size:12px!important;
+  font-weight:600!important;letter-spacing:.04em!important;
+  box-shadow:0 10px 30px rgba(0,0,0,.45)!important;
+}
+
+/* static fallback shown only if the map library can't load */
+.mapfallback{
+  display:none;padding:26px 4px;border-top:1px solid var(--rule-soft);
+  font-size:15px;color:var(--ink-dim);line-height:1.7;
+}
+.mapcard.nomap .mapfallback{display:block}
+.mapcard.nomap #worldmap{display:none}
+
+.maplegend{
+  display:flex;flex-wrap:wrap;gap:10px 22px;padding:16px 2px 0;
+  border-top:1px solid var(--rule-soft);margin-top:14px;
+  font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+}
+.maplegend span{display:inline-flex;align-items:center}
+.maplegend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green-bright);margin-right:8px;box-shadow:0 0 0 3px rgba(121,220,156,.18)}
+.maplegend i.s{background:var(--green);opacity:.65;box-shadow:none}
+
+/* country chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:56px;padding-top:34px;border-top:1px solid var(--rule)}
+.chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:9px 16px;border:1px solid var(--rule);border-radius:999px;
+  font-size:13.5px;color:var(--ink-dim);
+  transition:border-color var(--dur-micro),color var(--dur-micro),background var(--dur-micro),transform var(--dur-micro);
+}
+.chip:hover{border-color:var(--green);color:#fff;background:var(--green-soft);transform:translateY(-2px)}
+.chip s{text-decoration:none;font-size:11px;letter-spacing:.1em;color:var(--green-bright);font-weight:600}
+
+/* ---------- marquee ---------- */
+.marquee{
+  overflow:hidden;white-space:nowrap;padding:30px 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg2);
+}
+.marquee-track{display:inline-block;animation:marq 42s linear infinite}
+.marquee span{
+  font-size:clamp(1.5rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.01em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.34);
+  padding-right:60px;text-transform:uppercase;
+}
+.marquee span i{font-family:'Newsreader',serif;font-style:italic;font-weight:500;color:var(--green-bright);-webkit-text-stroke:0;text-transform:none}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- pathways ---------- */
+.band{background:var(--bg2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,80px);align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+@media(max-width:1000px){.sec-head{grid-template-columns:1fr;gap:24px;align-items:start}}
+.sec-head h2{margin-top:24px;color:#fff}
+.path{
+  display:grid;grid-template-columns:88px 1.1fr 2fr;gap:clamp(20px,3.4vw,60px);
+  padding:38px 20px;border-top:1px solid var(--rule);align-items:baseline;
+  transition:background var(--dur-default),padding-left .45s var(--ease-out-cubic);
+}
+.path:last-of-type{border-bottom:1px solid var(--rule)}
+.path:hover{background:var(--green-soft);padding-left:38px}
+@media(max-width:860px){
+  .path{grid-template-columns:52px 1fr;gap:16px;padding:30px 12px}
+  .path p{grid-column:2}
+  .path:hover{padding-left:20px}
+}
+.path-num{font-family:'Newsreader',serif;font-style:italic;font-size:1.9rem;color:var(--green);line-height:1}
+.path h3{color:#fff}
+.path p{color:var(--ink-dim);font-size:16.5px}
+
+/* ---------- cards (stories, webinars, roadmap) ---------- */
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1000px){.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.g3,.g2{grid-template-columns:1fr}}
+.card{
+  position:relative;padding:clamp(24px,2.4vw,34px);
+  border:1px solid var(--rule);border-radius:16px;background:var(--card);
+  overflow:hidden;
+  transition:transform var(--dur-default) var(--ease-out-cubic),border-color var(--dur-default),background var(--dur-default);
+}
+.card::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--green-bright));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--ease-out-cubic);
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(121,220,156,.4);background:var(--card-hi)}
+.card:hover::before{transform:scaleX(1)}
+.card .kicker{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green-bright);font-weight:600;display:block;margin-bottom:14px;
+}
+.card h4{font-size:clamp(1.12rem,1.6vw,1.34rem);font-weight:600;letter-spacing:-.01em;color:#fff;line-height:1.25}
+.card p{margin-top:12px;color:var(--ink-dim);font-size:16px}
+.card .status{
+  display:inline-block;margin-top:18px;padding:5px 12px;border-radius:999px;
+  border:1px solid var(--rule);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+.card .status.live{border-color:rgba(121,220,156,.45);color:var(--green-bright)}
+
+/* story cards with poster thumbnails (v1 layout with v2 images) */
+.card-thumb{
+  width:100%;aspect-ratio:16/10;border-radius:10px;overflow:hidden;
+  margin-bottom:18px;background:#0d121a;border:1px solid var(--rule-soft);
+  position:relative;
+}
+.card-thumb img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .4s var(--ease-out-cubic);
+}
+.card:hover .card-thumb img{
+  transform:scale(1.05);
+}
+.card-thumb-pitch{
+  border:1px dashed rgba(121,220,156,.35);
+  background:rgba(79,174,109,.04);
+  display:grid;place-items:center;
+}
+.pitch-badge{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:var(--green-bright);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+}
+.pitch-plus{
+  width:32px;height:32px;border-radius:50%;border:1px solid var(--green-bright);
+  display:grid;place-items:center;font-size:18px;font-weight:400;line-height:1;
+}
+
+/* testimony cards (v1) */
+.testify{background:var(--bg3);border-left:2px solid var(--green)}
+.testify .place{
+  display:flex;align-items:center;gap:12px;font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--green-bright);font-weight:600;
+}
+.testify blockquote{
+  font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,1.7vw,1.35rem);line-height:1.45;color:var(--ink);margin:16px 0 0;
+}
+.testify cite{display:block;margin-top:16px;font-style:normal;font-size:13px;color:var(--ink-faint)}
+
+/* ---------- convene section ---------- */
+.convene-group{margin-top:32px}
+.convene-divider{
+  font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:8px;
+}
+.convene-row{
+  display:grid;grid-template-columns:128px 1fr;gap:clamp(20px,3.4vw,50px);
+  padding:34px 16px;border-top:1px solid var(--rule);align-items:start;
+  transition:background var(--dur-default),padding-left .45s var(--ease-out-cubic);
+}
+.convene-row:last-of-type{border-bottom:1px solid var(--rule)}
+.convene-row:hover{background:var(--green-soft);padding-left:32px}
+.convene-rail{
+  padding-top:4px;border-top:2px solid var(--green);display:flex;flex-direction:column;gap:4px;
+}
+.c-date{font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1.6rem;color:#fff;line-height:1.1}
+.c-meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.convene-body h3{font-size:clamp(1.3rem,2.2vw,1.75rem);color:#fff;margin:6px 0 10px}
+.c-audience{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-bright);font-weight:600}
+.convene-body p{color:var(--ink-dim);font-size:16px;line-height:1.55}
+
+.convene-notify{margin-top:18px;max-width:440px}
+.notify-input-group{display:flex;gap:8px}
+.notify-input-group input{
+  flex:1;padding:10px 14px;border-radius:999px;background:#0a0e14;border:1px solid var(--rule);
+  font-size:14px;color:var(--ink);
+}
+.notify-input-group input:focus{outline:none;border-color:var(--green)}
+.notify-btn{padding:10px 20px!important;font-size:11.5px!important;flex:none}
+.convene-msg{font-size:13px;margin-top:8px;color:var(--green-bright);display:none}
+.convene-msg.show{display:block}
+.convene-msg.warn{color:#ffd28a}
+
+.archive-row{opacity:.6}
+.archive-row .convene-rail{border-top-color:var(--rule)}
+.archive-row .c-date{color:var(--ink-dim)}
+
+@media(max-width:720px){
+  .convene-row{grid-template-columns:1fr;gap:16px;padding:24px 10px}
+  .convene-rail{flex-direction:row;justify-content:space-between;align-items:baseline;padding-top:8px}
+  .convene-row:hover{padding-left:18px}
+}
+
+/* ---------- campaigns / initiatives ---------- */
+.camp{position:relative;margin-bottom:8px;overflow:hidden;height:min(62vh,560px);min-height:400px}
+.camp img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform}
+.camp::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(6,9,13,.88) 0%,rgba(6,9,13,.5) 52%,rgba(6,9,13,.1) 100%);
+}
+.camp-info{position:absolute;z-index:2;left:var(--gutter);bottom:clamp(32px,5vw,56px);max-width:min(480px,84vw)}
+.camp-info .tag{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-bright);font-weight:600}
+.camp-info h3{font-size:clamp(1.7rem,3.2vw,2.6rem);color:#fff;margin:12px 0 14px}
+.camp-info p{color:#d0d7d1;font-size:16.5px}
+
+/* ---------- quote band ---------- */
+.quote{background:var(--paper);color:var(--paper-ink);padding:clamp(90px,12vw,150px) 0;text-align:center}
+.quote .label{color:#525c52}
+.quote .label::before,.quote .label::after{background:var(--green)}
+.quote blockquote{
+  font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;
+  font-size:clamp(1.7rem,4vw,3.2rem);line-height:1.26;letter-spacing:-.01em;
+  max-width:960px;margin:34px auto 0;
+}
+.quote blockquote em{color:#2f7a4a;font-style:italic}
+.quote cite{
+  display:block;margin-top:32px;font-family:'Inter',sans-serif;font-style:normal;
+  font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:#525c52;
+}
+
+/* ---------- roadmap ---------- */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+@media(max-width:1000px){.pillars{grid-template-columns:1fr}}
+.pillar{
+  padding:clamp(26px,2.6vw,38px);border:1px solid var(--rule);border-radius:18px;background:var(--card);
+  transition:border-color var(--dur-default),background var(--dur-default);
+}
+.pillar:hover{border-color:rgba(121,220,156,.35);background:var(--card-hi)}
+.pillar .pnum{font-family:'Newsreader',serif;font-style:italic;font-size:1.5rem;color:var(--green)}
+.pillar h3{margin:10px 0 8px;color:#fff;font-size:clamp(1.25rem,1.9vw,1.6rem)}
+.pillar .sub{color:var(--ink-faint);font-size:13px;letter-spacing:.05em}
+.pillar ul{margin-top:24px;border-top:1px solid var(--rule-soft)}
+.pillar li{
+  list-style:none;padding:16px 0;border-bottom:1px solid var(--rule-soft);
+  transition:padding-left .35s var(--ease-out-cubic);
+}
+.pillar li:hover{padding-left:12px}
+.pillar li b{display:block;color:#fff;font-weight:600;font-size:16px;margin-bottom:3px}
+.pillar li span{color:var(--ink-dim);font-size:15px;line-height:1.5}
+
+/* ---------- open invitation / form ---------- */
+.invite{position:relative;overflow:hidden}
+.invite-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(40px,5vw,80px);align-items:start}
+@media(max-width:1000px){.invite-grid{grid-template-columns:1fr}}
+.invite h2{margin:24px 0 24px;color:#fff}
+.invite-quote{
+  font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(1.2rem,2vw,1.55rem);
+  line-height:1.45;color:var(--ink);padding-left:24px;border-left:2px solid var(--green);
+}
+.invite p.note{color:var(--ink-dim);margin-top:26px}
+.invite-figure{margin-top:34px;border-radius:14px;overflow:hidden;border:1px solid var(--rule)}
+form.tct{
+  padding:clamp(24px,2.6vw,38px);border:1px solid var(--rule);border-radius:20px;
+  background:var(--bg3);box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:9px}
+.field input,.field select,.field textarea{
+  width:100%;padding:14px 16px;border-radius:10px;
+  background:#0a0e14;border:1px solid var(--rule);
+  font-size:16px;transition:border-color var(--dur-micro),background var(--dur-micro);
+}
+.field input::placeholder,.field textarea::placeholder{color:#6c756e}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green);background:#0c1218}
+.field textarea{min-height:132px;resize:vertical;line-height:1.55}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:560px){.row2{grid-template-columns:1fr}}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:6px 0 24px;font-size:14px;color:var(--ink-dim)}
+.consent input{width:18px;height:18px;flex:none;margin-top:3px;accent-color:var(--green)}
+.formnote{margin-top:16px;font-size:13.5px;color:var(--ink-faint)}
+.formmsg{
+  margin-top:18px;padding:14px 16px;border-radius:10px;font-size:14.5px;
+  border:1px solid rgba(121,220,156,.4);background:rgba(79,174,109,.1);color:var(--green-bright);
+  display:none;
+}
+.formmsg.show{display:block}
+.formmsg.warn{border-color:rgba(255,196,84,.4);background:rgba(255,196,84,.08);color:#ffd28a}
+
+/* ---------- get involved ---------- */
+.involve{background:var(--bg2);border-top:1px solid var(--rule);text-align:center}
+.involve h2{margin:24px auto 22px;color:#fff;max-width:20em}
+.involve .lede{max-width:34em;margin:0 auto 38px}
+.involve-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- footer ---------- */
+footer{padding:52px 0;border-top:1px solid var(--rule)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap}
+.foot-logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.foot-logo img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--green)}
+.foot small{color:var(--ink-faint);font-size:13px}
+.foot nav{display:flex;gap:20px;font-size:13px;color:var(--ink-dim)}
+.foot nav a:hover{color:var(--green-bright)}
+
+/* ---------- reveal ---------- */
+.js .reveal{
+  --delay-order:0;opacity:0;transform:translateY(2rem);
+  transition:opacity var(--dur-entrance) var(--ease-out-quint),transform var(--dur-entrance) var(--ease-out-quint);
+  transition-delay:calc(.08s * var(--delay-order));
+}
+.js .reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+  .marquee-track,.pin::after{animation:none!important}
+}
+</style>
+
+<!-- Light-theme variation: layout, content, assets, and interactions remain unchanged. -->
+<style id="light-theme-overrides">
+:root{
+  --bg:#f7f8f3;
+  --bg2:#eef3ed;
+  --bg3:#f4f7f3;
+  --card:#ffffff;
+  --card-hi:#f5f9f5;
+  --paper:#ffffff;
+  --paper-ink:#17372f;
+  --paper-rule:rgba(23,55,47,.14);
+  --paper-dim:#52655d;
+  --paper-green:#236342;
+  --paper-green-hi:#2f7a4a;
+  --ink:#17372f;
+  --ink-dim:#50665d;
+  --ink-faint:#6c7d75;
+  --green:#3f9869;
+  --green-bright:#236f4a;
+  --green-soft:rgba(63,152,105,.11);
+  --rule:rgba(23,55,47,.16);
+  --rule-soft:rgba(23,55,47,.09);
+}
+body{background:var(--bg);color:var(--ink)}
+::selection{background:var(--green);color:#fff}
+.cropmarks::before,.cropmarks::after{color:rgba(23,55,47,.28)}
+
+/* Header: same floating shapes and sizing, translated to light surfaces. */
+.brand,.nav-shell{
+  background:rgba(255,255,255,.86);
+  border-color:rgba(23,55,47,.14);
+  box-shadow:0 12px 40px rgba(23,55,47,.12);
+}
+.brand:hover{border-color:rgba(35,111,74,.42)}
+.brand-mark{background:#edf4ee}
+.brand-name{color:var(--ink)}
+.nav-desktop a:hover{color:var(--ink);background:rgba(63,152,105,.08)}
+.nav-cta,.mobile-menu .mm-cta{color:#fff!important}
+.nav-cta:hover{color:#fff!important}
+.menu-scrim{background:rgba(23,55,47,.22)}
+.mobile-menu{
+  background:rgba(255,255,255,.98);
+  box-shadow:0 30px 70px rgba(23,55,47,.18);
+}
+.mobile-menu a:active{background:var(--green-soft)}
+
+/* Hero: retain the exact full-screen split image and composition; use a light veil. */
+.hero-bg img,.hero-bg video{filter:saturate(.9) brightness(1.08)}
+.hero-bg::after{
+  background:linear-gradient(to top,rgba(247,248,243,.98) 3%,rgba(247,248,243,.82) 42%,rgba(247,248,243,.48) 100%);
+}
+.hero .label{color:#35574b}
+.hero h1{color:var(--ink)}
+.hero p{color:#36594d}
+.hero-meta{border-top-color:rgba(23,55,47,.19);color:#48665b}
+.btn{color:var(--ink)}
+.btn:hover,.btn.solid{color:#fff}
+.btn.solid:hover{color:#fff}
+.btn.ghost:hover{color:var(--ink)}
+.hero-scroll{color:#48665b}
+
+/* Preserve all section layouts while switching typography and surfaces. */
+.who-copy h2,.sec-head h2,.path h3,.card h4,.c-date,.convene-body h3,
+.pillar h3,.pillar li b,.invite h2,.involve h2{color:var(--ink)}
+#stories h3[style]{color:var(--ink)!important}
+.mapcard{
+  background:linear-gradient(180deg,#ffffff,#f3f7f3);
+  box-shadow:0 30px 80px rgba(23,55,47,.12);
+}
+.mapcard-head b::before{box-shadow:0 0 0 3px rgba(63,152,105,.18)}
+.jvm-tooltip{box-shadow:0 10px 30px rgba(23,55,47,.16)!important}
+.maplegend i{box-shadow:0 0 0 3px rgba(63,152,105,.16)}
+.chip:hover{color:var(--ink)}
+.marquee span{-webkit-text-stroke:1px rgba(23,55,47,.30)}
+.card,.pillar{box-shadow:0 1px 2px rgba(23,55,47,.03)}
+.card:hover,.pillar:hover{border-color:rgba(35,111,74,.34)}
+.card-thumb{background:#e8efe9}
+.card-thumb-pitch{border-color:rgba(35,111,74,.35);background:rgba(63,152,105,.06)}
+.testify{background:#f1f6f1}
+.notify-input-group input,.field input,.field select,.field textarea{
+  background:#fff;
+  border-color:rgba(23,55,47,.18);
+}
+.notify-input-group input:focus,.field input:focus,.field select:focus,.field textarea:focus{background:#fff}
+.field input::placeholder,.field textarea::placeholder{color:#74837c}
+.convene-msg.warn,.formmsg.warn{color:#8a5a00}
+form.tct{box-shadow:0 30px 80px rgba(23,55,47,.10)}
+
+/* Image-led campaign panels keep their dimensions and placement with a light text veil. */
+.camp::after{
+  background:linear-gradient(to right,rgba(247,248,243,.96) 0%,rgba(247,248,243,.76) 52%,rgba(247,248,243,.12) 100%);
+}
+.camp-info .tag{color:var(--green-bright)}
+.camp-info h3{color:var(--ink)}
+.camp-info p{color:#36564b}
+.quote .label,.quote cite{color:var(--paper-dim)}
+footer{background:var(--bg)}
+
+@media(max-width:720px){
+  .camp::after{background:linear-gradient(to top,rgba(247,248,243,.96) 0%,rgba(247,248,243,.70) 58%,rgba(247,248,243,.16) 100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .js .reveal,.js .hero p,.js .hero-cta,.js .hero .label,.js .hero-meta{opacity:1;transform:none}
+  .js .hero h1 .word{transform:none;opacity:1}
+}
+</style>
+
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ HEADER: brand block + separate nav ============ -->
+<header class="site-head" id="siteHead">
+  <a class="brand" href="#top" aria-label="The Climate Truth — home">
+    <span class="brand-mark">
+      <span aria-hidden="true">TCT</span>
+      <img src="assets/logo.jpg" alt="" onerror="this.remove()">
+    </span>
+    <span class="brand-text">
+      <span class="brand-name">The Climate <b>Truth</b></span>
+      <span class="brand-tag">From awareness to action</span>
+    </span>
+  </a>
+
+  <div class="nav-shell">
+    <nav class="nav-desktop" aria-label="Main">
+      <a href="#who">Who We Are</a>
+      <a href="#pathways">What We Do</a>
+      <a href="#stories">Stories</a>
+      <a href="#convene">Convene</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#roadmap">Roadmap</a>
+      <a class="nav-cta" href="#invite">Share Your Truth</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <i></i>
+    </button>
+  </div>
+</header>
+
+<!-- OUTSIDE the header: no filtered/transformed ancestor -->
+<div class="menu-scrim" id="menuScrim" hidden></div>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile" hidden>
+  <a href="#who">Who We Are</a>
+  <a href="#pathways">What We Do</a>
+  <a href="#stories">Stories</a>
+  <a href="#convene">Convene</a>
+  <a href="#initiatives">Initiatives</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#involve">Get Involved</a>
+  <a class="mm-cta" href="#invite">Share Your Truth</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div class="hero cropmarks" id="top">
+  <div class="hero-bg">
+    <video id="heroVideo" autoplay muted loop playsinline poster="assets/hero_split.png" style="display:none">
+      <source src="assets/hero_loop.mp4" type="video/mp4">
+    </video>
+    <img id="heroImg" src="assets/hero_split.png" alt="A world split between a thriving planet and a planet in crisis">
+  </div>
+  <div class="wrap hero-inner">
+    <p class="label">A global climate movement</p>
+    <h1>
+      <span class="line"><span class="word">From</span> <span class="word">awareness</span></span>
+      <span class="line"><span class="word">to</span> <span class="word serif">action.</span></span>
+    </h1>
+    <p>The climate crisis isn't a forecast — it's someone's Tuesday. The Climate Truth is a digital-first movement that documents lived climate realities from the communities living them, and turns those truths into <strong>high-impact, low-barrier action</strong> anyone can join.</p>
+    <div class="hero-cta">
+      <a class="btn solid" href="#invite">Share your climate truth</a>
+      <a class="btn ghost" href="#who">See how it works</a>
+    </div>
+    <div class="hero-meta">
+      <span>Community-powered impact</span>
+      <span>Grassroots hubs across the Global South</span>
+      <span>Open to lead, free to join</span>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ WHO WE ARE + GLOBAL REACH ============ -->
+<section id="who">
+  <div class="wrap who-grid">
+    <div class="mapcard reveal" id="mapcard">
+      <div class="mapcard-head">
+        <span>Global reach — where TCT is active</span>
+        <b>Live &amp; growing</b>
+      </div>
+
+      <div id="worldmap" role="img"
+           aria-label="World map showing The Climate Truth's active hubs in Pakistan, Bangladesh, Nepal and Nigeria, with growing participation in India, Kenya, Egypt, Indonesia, the Philippines, Brazil and the United Kingdom."></div>
+
+      <p class="mapfallback">
+        <strong>Active hubs:</strong> Pakistan, Bangladesh, Nepal, Nigeria.<br>
+        <strong>Growing participation:</strong> India, Kenya, Egypt, Indonesia, the Philippines, Brazil, United Kingdom.
+      </p>
+
+      <div class="maplegend">
+        <span><i></i>Active hub</span>
+        <span><i class="s"></i>Growing participation</span>
+        <span class="mono">Open to every region</span>
+      </div>
+    </div>
+
+    <div class="who-copy reveal" style="--delay-order:1">
+      <p class="label">Who we are</p>
+      <h2>A movement, <span class="serif">not a lecture.</span></h2>
+      <p>The Climate Truth (TCT) is an international, digital-first climate advocacy platform. For decades the climate story has been told in statistics — <strong>we tell it in human stories</strong>, gathered from the people already living the consequences, and we convert them into action people can actually take this week.</p>
+      <p>We are a stage, not a hierarchy: no membership fees, no gatekeeping, and no requirement to be an expert before you contribute. Just structure, mentorship, and reach.</p>
+      <ul class="who-points">
+        <li><span>—</span> Storytelling over statistics — emotional, plain-language narratives</li>
+        <li><span>—</span> Accessible grassroots action designed for low-resource settings</li>
+        <li><span>—</span> An open platform where advocates lead their own projects</li>
+        <li><span>—</span> A special focus on Global South voices and ground truths</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="chips reveal">
+      <span class="chip"><s>PK</s> Pakistan</span>
+      <span class="chip"><s>BD</s> Bangladesh</span>
+      <span class="chip"><s>NP</s> Nepal</span>
+      <span class="chip"><s>NG</s> Nigeria</span>
+      <span class="chip"><s>IN</s> India</span>
+      <span class="chip"><s>KE</s> Kenya</span>
+      <span class="chip"><s>EG</s> Egypt</span>
+      <span class="chip"><s>ID</s> Indonesia</span>
+      <span class="chip"><s>PH</s> Philippines</span>
+      <span class="chip"><s>BR</s> Brazil</span>
+      <span class="chip"><s>GB</s> United Kingdom</span>
+      <a class="chip" href="#invite"><s>+</s> Add your country</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marq">
+    <span>From awareness <i>to action</i> —</span><span>Storytelling <i>over statistics</i> —</span><span>A movement, <i>not a lecture</i> —</span><span>Community-powered <i>impact</i> —</span>
+  </div>
+</div>
+
+<!-- ============ CORE PATHWAYS ============ -->
+<section class="band" id="pathways">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="label">Our core pathways</p>
+        <h2>How we turn truth <span class="serif">into action.</span></h2>
+      </div>
+      <p class="lede">These pathways are deliberately open-ended. As new advocates join, new pathways open — everything here is built to move people from understanding the crisis to doing something about it, at the lowest possible barrier to entry.</p>
+    </div>
+
+    <div class="path reveal">
+      <div class="path-num">01</div>
+      <h3>Storytelling</h3>
+      <p>Two distinct streams: AI-assisted creative climate narratives, and firsthand grassroots testimonies from frontline communities. Both are built to be felt and shared, not skimmed.</p>
+    </div>
+    <div class="path reveal" style="--delay-order:1">
+      <div class="path-num">02</div>
+      <h3>Action Challenges</h3>
+      <p>Structured community challenges such as Waste to Life — guided, step-by-step, achievable with materials already in the house, and shared back by the people who complete them.</p>
+    </div>
+    <div class="path reveal" style="--delay-order:2">
+      <div class="path-num">03</div>
+      <h3>Micro-Learning &amp; Education</h3>
+      <p>Short-form Eco-Hacks and a foundational video series: what's really happening, what climate change actually is, who is responsible, and why climate action is global justice.</p>
+    </div>
+    <div class="path reveal" style="--delay-order:3">
+      <div class="path-num">04</div>
+      <h3>Open Platform</h3>
+      <p>Any advocate, student, researcher, or climate professional can propose and lead a project. We provide the stage, the structure, the audience, and the support.</p>
+    </div>
+    <div class="path reveal" style="--delay-order:4">
+      <div class="path-num">05</div>
+      <h3>Research &amp; Collaboration</h3>
+      <p>University partnerships, fellowships, and comparative climate studies that convert lived experience into open-access evidence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORIES: AI SERIES & TESTIMONIES ============ -->
+<section id="stories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="label">Stories</p>
+        <h2>Two streams, <span class="serif">one truth.</span></h2>
+      </div>
+      <p class="lede">We keep creative work and lived testimony clearly separated. Our AI-assisted series is openly labelled as imaginative storytelling; our testimonies are unaltered accounts from real people, published with consent and attribution.</p>
+    </div>
+
+    <!-- STREAM 01: AI CLIMATE STORYTELLING SERIES (V1 CARDS WITH V2 IMAGES) -->
+    <h3 style="color:#fff;margin-bottom:8px" class="reveal">AI Climate Storytelling Series</h3>
+    <p class="lede reveal" style="max-width:44em;margin-bottom:34px">Creative, AI-assisted narratives that stretch the climate story across time, scale, and species. Each release is clearly marked as fiction grounded in real environmental science.</p>
+
+    <div class="grid g3">
+      <article class="card reveal">
+        <div class="card-thumb">
+          <picture>
+            <source srcset="assets/story-01-thriving.webp" type="image/webp">
+            <img src="assets/story-01-thriving.jpg" alt="The Dual Timelines" loading="lazy" width="1024" height="1536">
+          </picture>
+        </div>
+        <span class="kicker">Series 01</span>
+        <h4>The Dual Timelines</h4>
+        <p>One place, two futures, running side by side — the world we get if we act, against the world we get if we don't.</p>
+        <span class="status live">In production</span>
+      </article>
+
+      <article class="card reveal" style="--delay-order:1">
+        <div class="card-thumb">
+          <picture>
+            <source srcset="assets/story-02-microbe.webp" type="image/webp">
+            <img src="assets/story-02-microbe.jpg" alt="Voice of Microbe History" loading="lazy" width="1024" height="1536">
+          </picture>
+        </div>
+        <span class="kicker">Series 02</span>
+        <h4>Voice of Microbe History</h4>
+        <p>Four billion years of climate change narrated by the oldest witnesses on Earth — the microbes that shaped the atmosphere first.</p>
+        <span class="status">Concept</span>
+      </article>
+
+      <article class="card reveal" style="--delay-order:2">
+        <div class="card-thumb">
+          <picture>
+            <source srcset="assets/story-03-lostgreen.webp" type="image/webp">
+            <img src="assets/story-03-lostgreen.jpg" alt="Unearthing Lost Green" loading="lazy" width="1024" height="1536">
+          </picture>
+        </div>
+        <span class="kicker">Series 03</span>
+        <h4>Unearthing Lost Green</h4>
+        <p>Recovering the vanished forests, wetlands, and commons beneath our cities — what stood there, and what it did for us.</p>
+        <span class="status">Concept</span>
+      </article>
+
+      <article class="card reveal" style="--delay-order:3">
+        <div class="card-thumb">
+          <picture>
+            <source srcset="assets/story-04-letters.webp" type="image/webp">
+            <img src="assets/story-04-letters.jpg" alt="Letters from Future Gen Z" loading="lazy" width="1024" height="1536">
+          </picture>
+        </div>
+        <span class="kicker">Series 04</span>
+        <h4>Letters from Future Gen Z</h4>
+        <p>Correspondence sent backwards from 2070 by the generation that inherited our decisions — grateful, or unforgiving.</p>
+        <span class="status">Concept</span>
+      </article>
+
+      <article class="card reveal" style="--delay-order:4">
+        <div class="card-thumb">
+          <picture>
+            <source srcset="assets/story-05-nature.webp" type="image/webp">
+            <img src="assets/story-05-nature.jpg" alt="Conversations with Nature" loading="lazy" width="1024" height="1536">
+          </picture>
+        </div>
+        <span class="kicker">Series 05</span>
+        <h4>Conversations with Nature</h4>
+        <p>Dialogues with a river, a glacier, a mangrove, a monsoon — the ecosystems we talk about, finally talking back.</p>
+        <span class="status">Concept</span>
+      </article>
+
+      <article class="card reveal" style="--delay-order:5">
+        <div class="card-thumb card-thumb-pitch">
+          <div class="pitch-badge">
+            <span class="pitch-plus">+</span>
+            <span>Pitch your idea</span>
+          </div>
+        </div>
+        <span class="kicker">Open slot</span>
+        <h4>Your story concept</h4>
+        <p>The series is deliberately unfinished. Pitch a narrative from your own region and help shape the next release.</p>
+        <a class="status live" href="#invite">Pitch a story →</a>
+      </article>
+    </div>
+
+    <!-- STREAM 02: GRASSROOTS TESTIMONIES (KEEP AS V1) -->
+    <h3 style="color:#fff;margin:clamp(64px,7vw,100px) 0 8px" class="reveal">Grassroots Testimonies</h3>
+    <p class="lede reveal" style="max-width:44em;margin-bottom:34px">Firsthand accounts from communities on the frontlines — collected, documented, and amplified in the words of the people who lived them. Published only with informed consent.</p>
+
+    <div class="grid g2">
+      <article class="card testify reveal">
+        <div class="place"><span>Nigeria</span> · Frontline community</div>
+        <blockquote>Testimony in documentation — awaiting consent sign-off before publication.</blockquote>
+        <cite>Collected by the TCT Nigeria hub</cite>
+      </article>
+      <article class="card testify reveal" style="--delay-order:1">
+        <div class="place"><span>Pakistan</span> · Flood-affected district</div>
+        <blockquote>Testimony in documentation — awaiting consent sign-off before publication.</blockquote>
+        <cite>Collected by the TCT Pakistan hub</cite>
+      </article>
+      <article class="card testify reveal" style="--delay-order:2">
+        <div class="place"><span>Bangladesh</span> · Coastal delta</div>
+        <blockquote>Testimony in documentation — awaiting consent sign-off before publication.</blockquote>
+        <cite>Collected by the TCT Bangladesh hub</cite>
+      </article>
+      <article class="card testify reveal" style="--delay-order:3">
+        <div class="place"><span>Nepal</span> · Mountain watershed</div>
+        <blockquote>Testimony in documentation — awaiting consent sign-off before publication.</blockquote>
+        <cite>Collected by the TCT Nepal hub</cite>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONVENE ============ -->
+<section class="band" id="convene">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="label">Convene</p>
+        <h2>Cross-border, <span class="serif">on the record.</span></h2>
+      </div>
+      <p class="lede">Live virtual exchange sessions connecting advocates, researchers, and frontline communities across time zones. Recordings are published open-access after broadcast.</p>
+    </div>
+
+    <!-- Upcoming -->
+    <div class="convene-group">
+      <div class="convene-divider">Upcoming Sessions</div>
+
+      <div class="convene-row reveal">
+        <div class="convene-rail">
+          <span class="c-date">TBA</span>
+          <span class="c-meta mono">90 min · Online</span>
+        </div>
+        <div class="convene-body">
+          <div class="c-audience mono">Hub leads · PK · BD · NP · NG</div>
+          <h3>Global South Climate Exchange</h3>
+          <p>Hub leads from South and West Asia and West Africa compare local impacts, adaptation tactics, and what actually works across frontline regions.</p>
+          <form class="convene-notify" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="hidden" name="interest" value="Global South Climate Exchange">
+            <div class="notify-input-group">
+              <input type="email" name="email" placeholder="Your email for invite" required aria-label="Email for Global South Climate Exchange invite">
+              <button class="btn solid notify-btn" type="submit">Notify me</button>
+            </div>
+            <p class="convene-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
+      <div class="convene-row reveal" style="--delay-order:1">
+        <div class="convene-rail">
+          <span class="c-date">TBA</span>
+          <span class="c-meta mono">60 min · Online</span>
+        </div>
+        <div class="convene-body">
+          <div class="c-audience mono">For applicants and mentors</div>
+          <h3>Youth Fellowship Info Session</h3>
+          <p>How the Global Youth Fellowship works, who it's for, how mentors are matched worldwide, and how to submit your fellowship application.</p>
+          <form class="convene-notify" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="hidden" name="interest" value="Youth Fellowship Info Session">
+            <div class="notify-input-group">
+              <input type="email" name="email" placeholder="Your email for invite" required aria-label="Email for Youth Fellowship Info Session invite">
+              <button class="btn solid notify-btn" type="submit">Notify me</button>
+            </div>
+            <p class="convene-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archive -->
+    <div class="convene-group" style="margin-top:clamp(48px,5vw,72px)">
+      <div class="convene-divider">Archive</div>
+      <div class="convene-row archive-row reveal">
+        <div class="convene-rail">
+          <span class="c-date">—</span>
+          <span class="c-meta mono">Recordings</span>
+        </div>
+        <div class="convene-body">
+          <div class="c-audience mono">Open Access</div>
+          <h3>Session Recordings &amp; Transcripts</h3>
+          <p>Recordings published after each session — archive opens with the first broadcast.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INITIATIVES ============ -->
+<section id="initiatives">
+  <div class="wrap sec-head reveal" style="grid-template-columns:1fr;max-width:44em">
+    <div>
+      <p class="label">Initiatives</p>
+      <h2>Proof that awareness <span class="serif">can move.</span></h2>
+    </div>
+  </div>
+
+  <div class="camp reveal">
+    <img loading="lazy" decoding="async" class="plx" data-speed="0.09" src="assets/campaign_waste.png" alt="Participants upcycling household waste into functional objects">
+    <div class="camp-info">
+      <div class="tag">Community challenge</div>
+      <h3>Waste to Life</h3>
+      <p>A five-day upcycling challenge — household waste into functional products, guided step by step, with the community sharing what they built.</p>
+    </div>
+  </div>
+
+  <div class="camp reveal">
+    <img loading="lazy" decoding="async" class="plx" data-speed="0.09" src="assets/campaign_tree.png" alt="A single tree standing in a cleared landscape">
+    <div class="camp-info">
+      <div class="tag">Awareness series</div>
+      <h3>ONE TREE</h3>
+      <p>A six-day deforestation story told through a single tree — what we lose when it falls, and what grows back when we choose differently.</p>
+    </div>
+  </div>
+
+  <div class="camp reveal">
+    <img loading="lazy" decoding="async" class="plx" data-speed="0.09" src="assets/campaign_series.png" alt="Still frames from the climate education video series">
+    <div class="camp-info">
+      <div class="tag">Video series</div>
+      <h3>The Climate Truth, in Four Episodes</h3>
+      <p>From what's really happening to global climate justice — the foundational education series behind the movement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote">
+  <div class="wrap reveal">
+    <p class="label center">Why we exist</p>
+    <blockquote>
+      "The climate story has been told with statistics for decades.<br>
+      People don't move for numbers — <em>they move for each other.</em>"
+    </blockquote>
+    <cite>— The Climate Truth manifesto</cite>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="band" id="roadmap">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="label">Strategic roadmap</p>
+        <h2>Two pillars, <span class="serif">one research track.</span></h2>
+      </div>
+      <p class="lede">Digital reach on one side, physical community action on the other, and an academic track that turns both into evidence. Everything below is either running or in active development.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pnum">Pillar I</div>
+        <h3>Digital Innovation &amp; Engagement</h3>
+        <p class="sub">Reach, narrative, and micro-learning</p>
+        <ul>
+          <li><b>AI Storytelling</b><span>The creative narrative series — Dual Timelines, Microbe History, Lost Green, Letters from Future Gen Z, Conversations with Nature.</span></li>
+          <li><b>Eco-Hacks Micro-Learning</b><span>Short video hacks: visual waste-to-life transformations, micro-urban gardening, eco-budgeting for sustainable living, and the microbiology of daily eco-habits.</span></li>
+          <li><b>Global Youth Fellowship</b><span>Connecting passionate young advocates with mentors worldwide.</span></li>
+        </ul>
+      </div>
+
+      <div class="pillar reveal" style="--delay-order:1">
+        <div class="pnum">Pillar II</div>
+        <h3>Onsite Community Action</h3>
+        <p class="sub">Hands, ground, and neighbourhoods</p>
+        <ul>
+          <li><b>Urban Plantation Drives</b><span>Vertical greening and micro-space planting in high-density urban areas.</span></li>
+          <li><b>Waste-to-Life Hubs</b><span>Local upcycling and community recycling workshops that keep material out of landfill.</span></li>
+          <li><b>Eco-Plogging &amp; Fitness Drives</b><span>Combining health, fitness, and environmental cleanup in one community event.</span></li>
+        </ul>
+      </div>
+
+      <div class="pillar reveal" style="--delay-order:2">
+        <div class="pnum">Track</div>
+        <h3>Academic &amp; Research</h3>
+        <p class="sub">University collaborations</p>
+        <ul>
+          <li><b>Global Climate Fellowships</b><span>Pairing local students with international environmental professionals.</span></li>
+          <li><b>Comparative Climate Studies</b><span>Cross-regional research on climate impact, vulnerability, and resilience.</span></li>
+          <li><b>Publications &amp; AI Tools</b><span>Open-access climate research plus practical AI tooling for climate tracking.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN INVITATION ============ -->
+<section class="invite" id="invite">
+  <div class="wrap invite-grid">
+    <div class="reveal">
+      <p class="label">Open invitation</p>
+      <h2>Submit your <span class="serif">climate truth.</span></h2>
+      <p class="invite-quote">"Wherever you are in the world, share your region's climate truth and lived realities. We provide the stage to amplify your voice."</p>
+      <p class="note">TCT exists to aggregate, document, and amplify localized climate realities — the ground truths that rarely reach a global audience. Submissions can be a personal account, a photo-story, a local observation, a research summary, or an idea for a project you want to lead. Nothing is published without your explicit consent, and you keep authorship of your own story.</p>
+      <div class="invite-figure">
+        <img loading="lazy" decoding="async" src="assets/about_panel_wide.png" alt="Community members documenting local environmental change">
+      </div>
+    </div>
+
+    <form class="tct reveal" id="truthForm" style="--delay-order:1"
+          action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+      <div class="row2">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" placeholder="Full name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-country">Country</label>
+          <input id="f-country" name="country" type="text" placeholder="e.g. Bangladesh" required>
+        </div>
+        <div class="field">
+          <label for="f-region">Region / city</label>
+          <input id="f-region" name="region" type="text" placeholder="e.g. Khulna Division">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-type">What are you sharing?</label>
+        <select id="f-type" name="submission_type">
+          <option>A lived testimony from my community</option>
+          <option>A photo-story or short video</option>
+          <option>A local observation or dataset</option>
+          <option>A story concept for the AI series</option>
+          <option>A project I want to lead</option>
+          <option>A webinar or event idea</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-story">Your climate truth</label>
+        <textarea id="f-story" name="story" placeholder="What is changing where you live? What have you seen, lost, adapted to, or rebuilt? Write it plainly — we don't need it polished." required></textarea>
+      </div>
+      <div class="field">
+        <label for="f-link">Link (optional)</label>
+        <input id="f-link" name="link" type="url" placeholder="https://">
+      </div>
+      <label class="consent" for="f-consent">
+        <input id="f-consent" name="consent" type="checkbox" required>
+        <span>I consent to The Climate Truth reviewing my submission and contacting me before anything is published.</span>
+      </label>
+      <button class="btn solid" type="submit">Submit my climate truth</button>
+      <p class="formnote">No fee, no membership, no experience required. We reply to every submission.</p>
+      <p class="formmsg" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ GET INVOLVED ============ -->
+<section class="involve" id="involve">
+  <div class="wrap reveal">
+    <p class="label center">Get involved</p>
+    <h2>The truth is only useful <span class="serif">if it moves you.</span></h2>
+    <p class="lede">Follow the movement, join a challenge, apply for the fellowship, or propose a project of your own. Every pathway is open, and none of them require you to be an expert first.</p>
+    <div class="involve-links">
+      <a class="btn solid" href="#invite">Share your truth</a>
+      <a class="btn ghost" href="#" target="_blank" rel="noopener">Follow on LinkedIn</a>
+      <a class="btn ghost" href="mailto:hello@theclimatetruth.org">Contact us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap foot">
+    <div class="foot-logo"><img src="assets/logo.jpg" alt="" onerror="this.remove()">The Climate Truth</div>
+    <nav aria-label="Footer">
+      <a href="#who">About</a>
+      <a href="#stories">Stories</a>
+      <a href="#convene">Convene</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="mailto:hello@theclimatetruth.org">Contact</a>
+    </nav>
+    <small>© 2026 The Climate Truth (TCT) — From Awareness to Action</small>
+  </div>
+</footer>
+
+<!-- Real vector world map (jsvectormap v1.x) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1/dist/jsvectormap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1/dist/jsvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1/dist/maps/world.js"></script>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var head = document.getElementById('siteHead');
+
+  /* header: hide on scroll down, show on scroll up */
+  var lastY = 0;
+  addEventListener('scroll', function(){
+    var y = scrollY;
+    head.classList.toggle('hidden', y > 420 && y > lastY && !isOpen());
+    lastY = y;
+  }, {passive:true});
+
+  /* mobile drawer */
+  var toggle = document.getElementById('navToggle');
+  var menu   = document.getElementById('mobileMenu');
+  var scrim  = document.getElementById('menuScrim');
+
+  function setMenu(open){
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if(open){
+      menu.hidden = false; scrim.hidden = false;
+      requestAnimationFrame(function(){ menu.classList.add('show'); scrim.classList.add('show'); });
+      document.body.style.overflow = 'hidden';
+      head.classList.remove('hidden');
+    } else {
+      menu.classList.remove('show'); scrim.classList.remove('show');
+      document.body.style.overflow = '';
+      setTimeout(function(){
+        if(!menu.classList.contains('show')){ menu.hidden = true; scrim.hidden = true; }
+      }, 360);
+    }
+  }
+  var isOpen = function(){ return toggle.getAttribute('aria-expanded') === 'true'; };
+
+  toggle.addEventListener('click', function(){ setMenu(!isOpen()); });
+  scrim.addEventListener('click', function(){ setMenu(false); });
+  menu.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
+  addEventListener('keydown', function(e){ if(e.key === 'Escape' && isOpen()) setMenu(false); });
+  addEventListener('resize', function(){ if(innerWidth > 1120 && isOpen()) setMenu(false); });
+
+  /* hero entrance */
+  var hero = document.querySelector('.hero');
+  function startHero(){
+    document.querySelectorAll('.hero .word').forEach(function(w,i){ w.style.transitionDelay = (0.12 + i*0.09) + 's'; });
+    requestAnimationFrame(function(){ hero.classList.add('loaded'); });
+  }
+  if(document.readyState === 'complete') startHero();
+  else addEventListener('load', startHero);
+  setTimeout(function(){ hero.classList.add('loaded'); }, 2200); /* safety net */
+
+  /* hero video only when it can genuinely play, and not on small screens */
+  var hv = document.getElementById('heroVideo'), hi = document.getElementById('heroImg');
+  if(hv && !reduce && innerWidth > 820){
+    hv.addEventListener('canplay', function(){ hv.style.display='block'; hi.style.display='none'; }, {once:true});
+    hv.load();
+  }
+
+  /* reveal on scroll */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* parallax — translate only, no CSS transition on these images */
+  var plx = [].slice.call(document.querySelectorAll('.plx'));
+  var ticking = false;
+  function parallax(){
+    var vh = innerHeight;
+    plx.forEach(function(el){
+      var r = el.parentElement.getBoundingClientRect();
+      if(r.bottom < -100 || r.top > vh + 100) return;
+      var speed = parseFloat(el.dataset.speed || 0.08);
+      var offset = (r.top + r.height/2 - vh/2) * speed;
+      el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+    });
+    ticking = false;
+  }
+  if(plx.length && !reduce){
+    addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(parallax); ticking = true; } }, {passive:true});
+    addEventListener('resize', parallax, {passive:true});
+    parallax();
+  }
+
+  /* marquee: duplicate for seamless loop */
+  var marq = document.getElementById('marq');
+  if(marq && !reduce) marq.innerHTML += marq.innerHTML;
+
+  /* submission forms guard (main + convene notifications) */
+  document.querySelectorAll('form').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      var msg = f.querySelector('.formmsg') || f.querySelector('.convene-msg');
+      if(!f.checkValidity()){
+        e.preventDefault();
+        if(msg){
+          msg.className = msg.className.indexOf('convene-msg') > -1 ? 'convene-msg warn show' : 'formmsg warn show';
+          msg.textContent = f.id === 'truthForm'
+            ? 'Please complete the required fields — name, email, country, your story, and consent.'
+            : 'Please enter a valid email address.';
+        }
+        var bad = f.querySelector(':invalid'); if(bad) bad.focus();
+        return;
+      }
+      if(f.action.indexOf('YOUR_FORM_ID') > -1){
+        e.preventDefault();
+        if(msg){
+          msg.className = msg.className.indexOf('convene-msg') > -1 ? 'convene-msg warn show' : 'formmsg warn show';
+          msg.textContent = 'Form endpoint not connected yet — replace YOUR_FORM_ID in the form action to start receiving submissions.';
+        }
+      }
+    });
+  });
+
+  /* ---------- world map ---------- */
+  var mapcard = document.getElementById('mapcard');
+  var hubs = [
+    {name:'Pakistan · Active hub',   coords:[30.3753, 69.3451]},
+    {name:'Bangladesh · Active hub', coords:[23.6850, 90.3563]},
+    {name:'Nepal · Active hub',      coords:[28.3949, 84.1240]},
+    {name:'Nigeria · Active hub',    coords:[9.0820,  8.6753]}
+  ];
+  var growing = [
+    {name:'India',          coords:[20.5937, 78.9629]},
+    {name:'Kenya',          coords:[-0.0236, 37.9062]},
+    {name:'Egypt',          coords:[26.8206, 30.8025]},
+    {name:'Indonesia',      coords:[-2.5489,118.0149]},
+    {name:'Philippines',    coords:[12.8797,121.7740]},
+    {name:'Brazil',         coords:[-14.2350,-51.9253]},
+    {name:'United Kingdom', coords:[55.3781, -3.4360]}
+  ];
+  var hubCodes = ['PK','BD','NP','NG'];
+  var growCodes = ['IN','KE','EG','ID','PH','BR','GB'];
+
+  if(typeof jsVectorMap === 'undefined'){
+    mapcard.classList.add('nomap');
+  } else {
+    var fills = {};
+    hubCodes.forEach(function(c){ fills[c] = 'rgba(79,174,109,.42)'; });
+    growCodes.forEach(function(c){ fills[c] = 'rgba(79,174,109,.20)'; });
+
+    var wm = new jsVectorMap({
+      selector:'#worldmap',
+      map:'world',
+      backgroundColor:'transparent',
+      zoomOnScroll:false,
+      zoomButtons:false,
+      regionsSelectable:false,
+      markersSelectable:false,
+      regionStyle:{
+        initial:{fill:'#dce7df', stroke:'#f7f8f3', strokeWidth:.5, fillOpacity:1},
+        hover:{fill:'#c9dacf', fillOpacity:1}
+      },
+      series:{
+        regions:[{attribute:'fill', values:fills}]
+      },
+      markers:hubs.concat(growing),
+      markerStyle:{
+        initial:{r:6, fill:'#3f9869', stroke:'#ffffff', strokeWidth:2, fillOpacity:1},
+        hover:{r:9, fill:'#236f4a', stroke:'#8bc8a4', strokeWidth:2, cursor:'pointer'}
+      },
+      markersStyle:{},
+      labels:{markers:{render:function(m){ return ''; }}},
+      onLoaded:function(map){
+        /* smaller, dimmer dots for "growing" tier */
+        var nodes = map.container.querySelectorAll('.jvm-marker');
+        nodes.forEach(function(n,i){
+          if(i >= hubs.length){
+            n.setAttribute('r','4');
+            n.setAttribute('fill','#4fae6d');
+            n.setAttribute('fill-opacity','.8');
+          }
+        });
+      }
+    });
+    addEventListener('resize', function(){ wm.updateSize(); }, {passive:true});
+  }
+})();
+</script>
+</body>
+</html>
