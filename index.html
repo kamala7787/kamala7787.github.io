@@ -236,13 +236,13 @@ h3{font-size:clamp(1.3rem,2.4vw,1.9rem)}
   font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;
 }
 
-@media(max-width:1120px){
+@media(max-width:1280px){
   :root{--nav-h:92px}
   .nav-desktop{display:none}
   .nav-toggle{display:grid}
   .nav-shell{padding:8px}
 }
-@media(min-width:1121px){
+@media(min-width:1281px){
   .mobile-menu,.menu-scrim{display:none!important}
 }
 @media(max-width:560px){
@@ -766,7 +766,7 @@ footer{background:var(--bg)}
   left:var(--gutter);right:var(--gutter);width:auto;
   max-width:var(--max);padding:10px 12px;overflow:hidden;isolation:isolate;
   border:1px solid rgba(255,255,255,.42);border-radius:999px;
-  background:linear-gradient(135deg,rgba(255,255,255,.32),rgba(255,255,255,.10));
+  background:linear-gradient(135deg,rgba(255,255,255,.46),rgba(255,255,255,.24));
   -webkit-backdrop-filter:blur(24px) saturate(170%);backdrop-filter:blur(24px) saturate(170%);
   box-shadow:0 16px 48px rgba(8,35,27,.16),inset 0 1px 0 rgba(255,255,255,.65),inset 0 -1px 0 rgba(255,255,255,.16);
   gap:20px;
@@ -782,8 +782,23 @@ footer{background:var(--bg)}
 }
 .site-head .brand{padding:0 14px 0 0;gap:16px}
 .site-head .nav-shell{margin-left:auto;padding:0}
-.site-head .nav-desktop a{color:#17372f;font-weight:600;text-shadow:0 1px 12px rgba(255,255,255,.82)}
-.site-head .nav-cta{text-shadow:none}
+.site-head .nav-desktop{gap:2px}
+.site-head .nav-desktop a{
+  padding:10px 13px;font-size:15px;font-weight:600;letter-spacing:.01em;
+  color:#17372f;text-shadow:none;
+}
+.site-head .nav-desktop a:hover{background:rgba(255,255,255,.16);color:#17372f}
+.site-head .nav-cta{
+  margin-left:8px;padding:11px 18px!important;
+  border:1px solid rgba(35,111,74,.28);
+  background:rgba(63,152,105,.12);color:#174d38!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.42);
+  text-shadow:none;letter-spacing:.01em;
+}
+.site-head .nav-cta:hover{
+  background:rgba(63,152,105,.20);color:#123e2e!important;
+  border-color:rgba(35,111,74,.42);transform:none;
+}
 .site-head .brand-mark{
   /* Preserve the approved logo dimensions. */
   width:clamp(52px,4.6vw,72px);height:clamp(52px,4.6vw,72px);
@@ -855,7 +870,7 @@ footer{background:var(--bg)}
 .pillar li b{font-size:15.5px;margin-bottom:7px;color:var(--ink)}
 .pillar li span{display:block;color:#53685f;font-size:14.5px;line-height:1.58}
 
-@media(max-width:1120px){
+@media(max-width:1280px){
   .site-head{padding:9px 10px}
   .site-head .brand{padding-right:8px}
 }
@@ -1484,7 +1499,7 @@ footer{background:var(--bg)}
   scrim.addEventListener('click', function(){ setMenu(false); });
   menu.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
   addEventListener('keydown', function(e){ if(e.key === 'Escape' && isOpen()) setMenu(false); });
-  addEventListener('resize', function(){ if(innerWidth > 1120 && isOpen()) setMenu(false); });
+  addEventListener('resize', function(){ if(innerWidth > 1280 && isOpen()) setMenu(false); });
 
   /* hero entrance */
   var hero = document.querySelector('.hero');
