@@ -757,6 +757,118 @@ footer{background:var(--bg)}
 }
 </style>
 
+
+<style id="requested-visual-fixes">
+/* Requested visual refinements: one-piece header, clear imagery, integrated roadmap cards. */
+
+/* Join the brand and navigation into one continuous floating menu. */
+.site-head{
+  left:var(--gutter);right:var(--gutter);width:auto;
+  max-width:var(--max);padding:10px 12px;
+  border:1px solid rgba(23,55,47,.14);border-radius:999px;
+  background:rgba(255,255,255,.90);
+  -webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);
+  box-shadow:0 16px 48px rgba(23,55,47,.13);
+  gap:20px;
+}
+.site-head .brand,.site-head .nav-shell{
+  background:transparent;border:0;box-shadow:none;
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
+.site-head .brand{padding:0 14px 0 0;gap:16px}
+.site-head .nav-shell{margin-left:auto;padding:0}
+.site-head .brand-mark{
+  /* Preserve the approved logo dimensions. */
+  width:clamp(52px,4.6vw,72px);height:clamp(52px,4.6vw,72px);
+}
+
+/* Let the hero artwork read clearly; retain only a localized dark veil for copy contrast. */
+.hero-bg img,.hero-bg video{filter:saturate(1.02) brightness(.96)}
+.hero-bg::after{
+  background:
+    linear-gradient(to right,rgba(7,35,27,.68) 0%,rgba(7,35,27,.38) 34%,rgba(7,35,27,.10) 59%,rgba(7,35,27,0) 76%),
+    linear-gradient(to top,rgba(7,28,22,.52) 0%,rgba(7,28,22,.12) 38%,rgba(7,28,22,0) 66%);
+}
+.hero .label{color:rgba(255,255,255,.86)}
+.hero h1{color:#fff;text-shadow:0 3px 30px rgba(5,26,20,.24)}
+.hero h1 .serif{color:#a8e7bd}
+.hero p{color:rgba(255,255,255,.90);text-shadow:0 2px 18px rgba(5,26,20,.22)}
+.hero-meta{border-top-color:rgba(255,255,255,.30);color:rgba(255,255,255,.78)}
+.hero .btn.ghost{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(8,39,30,.14)}
+.hero .btn.ghost:hover{border-color:#fff;color:#fff;background:rgba(8,39,30,.30)}
+.hero-scroll{color:rgba(255,255,255,.78)}
+
+/* Remove the milky campaign treatment; use a focused green-black text gradient instead. */
+.camp img{filter:saturate(1.04) contrast(1.02)}
+.camp::after{
+  background:linear-gradient(to right,rgba(7,34,26,.82) 0%,rgba(7,34,26,.55) 31%,rgba(7,34,26,.18) 55%,rgba(7,34,26,0) 76%);
+}
+.camp-info .tag{color:#a9edc2;text-shadow:0 1px 12px rgba(0,0,0,.18)}
+.camp-info h3{color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.28)}
+.camp-info p{color:rgba(255,255,255,.88);text-shadow:0 2px 16px rgba(0,0,0,.24)}
+
+/* Rebuild the roadmap cards as equal, softly tinted site-native panels. */
+.pillars{gap:24px;align-items:stretch}
+.pillar{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;height:100%;
+  padding:clamp(30px,2.8vw,42px);border-radius:24px;
+  border:1px solid rgba(35,111,74,.18);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(63,152,105,.11),transparent 35%),
+    linear-gradient(155deg,#ffffff 0%,#f2f7f2 100%);
+  box-shadow:0 18px 50px rgba(23,55,47,.08),0 2px 8px rgba(23,55,47,.04);
+  transition:transform var(--dur-default) var(--ease-out-cubic),border-color var(--dur-default),box-shadow var(--dur-default),background var(--dur-default);
+}
+.pillar::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:5px;
+  background:linear-gradient(90deg,var(--green-bright),var(--green),#8bc99f);
+}
+.pillar:hover{
+  transform:translateY(-6px);border-color:rgba(35,111,74,.35);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(63,152,105,.15),transparent 38%),
+    linear-gradient(155deg,#ffffff 0%,#edf6ef 100%);
+  box-shadow:0 26px 64px rgba(23,55,47,.13),0 3px 10px rgba(23,55,47,.05);
+}
+.pillar .pnum{
+  align-self:flex-start;display:inline-flex;align-items:center;
+  padding:7px 13px;border-radius:999px;
+  border:1px solid rgba(35,111,74,.18);background:rgba(63,152,105,.10);
+  font-family:'Inter',system-ui,sans-serif;font-style:normal;font-size:11px;font-weight:700;
+  line-height:1;letter-spacing:.14em;text-transform:uppercase;color:var(--green-bright);
+}
+.pillar h3{margin:20px 0 10px;font-size:clamp(1.3rem,1.8vw,1.65rem);line-height:1.12}
+.pillar .sub{color:#5c7168;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
+.pillar ul{display:flex;flex:1;flex-direction:column;margin-top:26px;border-top:1px solid rgba(23,55,47,.12)}
+.pillar li{
+  position:relative;flex:1;padding:19px 0 19px 24px;
+  border-bottom:1px solid rgba(23,55,47,.10);
+  transition:padding-left .3s var(--ease-out-cubic),background var(--dur-micro);
+}
+.pillar li::before{
+  content:"";position:absolute;left:2px;top:27px;width:8px;height:8px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 0 4px rgba(63,152,105,.10);
+}
+.pillar li:hover{padding-left:29px;background:linear-gradient(90deg,rgba(63,152,105,.06),transparent 78%)}
+.pillar li b{font-size:15.5px;margin-bottom:7px;color:var(--ink)}
+.pillar li span{display:block;color:#53685f;font-size:14.5px;line-height:1.58}
+
+@media(max-width:1120px){
+  .site-head{padding:9px 10px}
+  .site-head .brand{padding-right:8px}
+}
+@media(max-width:720px){
+  .camp::after{background:linear-gradient(to top,rgba(7,34,26,.86) 0%,rgba(7,34,26,.54) 40%,rgba(7,34,26,.12) 68%,rgba(7,34,26,0) 86%)}
+  .pillar{min-height:auto}
+}
+@media(max-width:560px){
+  .site-head{left:12px;right:12px;top:12px;gap:8px;padding:8px 9px}
+  .site-head .brand{padding:0;gap:10px}
+  .site-head .brand-name{font-size:clamp(16px,5vw,20px)}
+  .site-head .brand-tag{font-size:8.5px;letter-spacing:.1em}
+}
+</style>
+
 </head>
 <body>
 
